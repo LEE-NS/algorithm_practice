@@ -10,13 +10,22 @@
 // 출력: "olleh dlrow"
 
 function reverseEachWord(s) {
-  // s를 공백을 기준으로 나눈다.
-  // 나눠진 요소가 들어간 배열에 대해 각 요소를 다시 배열로 나누어 reverse하고 join
-  // reverse된 요소를 공백을 기준으로 join한다
+  // s를 공백을 기준으로 나누고 각 요소를 철자별로 배열에 spread한다.
+  // updatedRvsArr에는 단어별로 뒤집힌 문자열이 요소로 들어가도록, rvsArr에는 단어의 철자가 역순으로 들어올 수 있도록 빈 배열을 만든다.
+  // 반복문을 이용해서 updatedRvsArr에 rvsArr을 결합한 문자열이 모두 들어온 후에 updatedRvsArr를 공백을 기준으로 문자열로 결합한다.
 
-  const arr = s.split(" ");
-  const reversedStrArr = arr.map((str) => str.split("").reverse().join(""));
-  return reversedStrArr.join(" ");
+  const strArr = s.split(" ").map((str) => [...str]);
+  const updatedRvsArr = [];
+
+  for (let i = 0; i < strArr.length; i++) {
+    const rvsArr = [];
+    for (let j = strArr[i].length - 1; j >= 0; j--) {
+      rvsArr.push(strArr[i][j]);
+    }
+    updatedRvsArr.push(rvsArr.join(""));
+  }
+
+  return updatedRvsArr.join(" ");
 }
 
 function testReverseEachWord() {

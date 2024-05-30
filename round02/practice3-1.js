@@ -9,8 +9,13 @@
 // 출력: "world hello"
 
 function reverseWords(s) {
-  //공백 기준으로 배열로 나누어 반전한 다음 공백을 기준으로 연결한다.
-  return s.split(" ").reverse().join(" ");
+  //공백 기준으로 배열로 나누어 빈 배열에 역순으로 요소를 삽입한 다음 공백을 기준으로 연결한다.
+  const arr = s.split(" ");
+  const reversedArr = [];
+  for (let i = arr.length - 1; i >= 0; i--) {
+    reversedArr.push(arr[i]);
+  }
+  return reversedArr.join(" ");
 }
 
 // 테스트 코드
