@@ -36,7 +36,7 @@ function minimumNumberGame(nums) {
 
   const answer = [];
   while (nums.length > 0) {
-    let i = 0;
+    let i = 1;
     let aliceMinNum = nums[0];
     let aliceMinNumIndex = 0;
     while (i < nums.length) {
@@ -47,20 +47,20 @@ function minimumNumberGame(nums) {
       i++;
     }
     nums.splice(aliceMinNumIndex, 1)[0];
-
-    i = 0;
-    let bobMinNum = nums[0];
-    let bobMinNumIndex = 0;
-    while (i < nums.length) {
-      if (bobMinNum > nums[i]) {
-        bobMinNum = nums[i];
-        bobMinNumIndex = i;
+    if (nums.length > 0) {
+      i = 1;
+      let bobMinNum = nums[0];
+      let bobMinNumIndex = 0;
+      while (i < nums.length) {
+        if (bobMinNum > nums[i]) {
+          bobMinNum = nums[i];
+          bobMinNumIndex = i;
+        }
+        i++;
       }
-      i++;
+      nums.splice(bobMinNumIndex, 1)[0];
+      answer.push(bobMinNum);
     }
-    nums.splice(bobMinNumIndex, 1)[0];
-
-    answer.push(bobMinNum);
     answer.push(aliceMinNum);
   }
   return answer;
